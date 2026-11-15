@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Тазовое дно · Первая часть</title><link rel="stylesheet" href="pelvic.css"></head>
+<body>
+<main id="pelvic-app">
+  <section id="setup" class="page">
+    <p class="eyebrow">Тазовое дно · Часть комплекса</p>
+    <h1>Начинаем<br><em>с четырёх.</em></h1>
+    <p class="lead">Это первая часть. Остальные упражнения добавим сюда позже.</p>
+    <p class="equipment">Коврик · мяч для пилатеса 20–25 см или плотная подушка</p>
+    <ol class="exercise-list" id="exercise-list"></ol>
+    <details class="settings" open><summary>Повторы и удержания</summary><p class="settings-note">Диапазоны из присланных расшифровок. Выбраны нижние значения; их можно изменить перед стартом.</p>
+      <div class="fields">
+        <label>Сжатие мяча · повторы<select name="squeezeReps"><option value="10">10</option><option value="12">12</option><option value="15">15</option></select></label>
+        <label>Сжатие мяча · подходы<select name="squeezeSets"><option value="2">2</option><option value="3">3</option></select></label>
+        <label>Каждое упражнение на боку<select name="hipReps"><option value="12">12 на сторону</option><option value="15">15 на сторону</option></select></label>
+        <label>Круги упражнений на боку<select name="hipRounds"><option value="1">1 круг</option><option value="2">2 круга · необязательно</option></select></label>
+        <label>Планка · на каждую сторону<select name="plankSeconds"><option value="30">30 секунд</option><option value="45">45 секунд</option></select></label>
+      </div>
+    </details>
+    <details class="settings"><summary>Ритм и паузы таймера</summary><p class="settings-note">Эти интервалы — настройки плеера: точного темпа и секунд отдыха в тексте нет. Счёт до пяти при сжатии мяча отображается как 5 секунд. Для планки здесь одно удержание на каждом боку; число подходов в записи не задано.</p>
+      <div class="fields">
+        <label>Движение на боку · один повтор<select name="repSeconds"><option value="4">4 секунды</option><option value="6" selected>6 секунд</option><option value="8">8 секунд</option></select></label>
+        <label>Расслабление после сжатия<select name="releaseSeconds"><option value="3">3 секунды</option><option value="5" selected>5 секунд</option><option value="8">8 секунд</option></select></label>
+        <label>Отдых и смена стороны<select name="restSeconds"><option value="15">15 секунд</option><option value="20" selected>20 секунд</option><option value="30">30 секунд</option></select></label>
+        <label>Подготовка к упражнению<select name="prepSeconds"><option value="5">5 секунд</option><option value="10" selected>10 секунд</option><option value="15">15 секунд</option></select></label>
+      </div>
+    </details>
+    <p class="sequence-note">Порядок этой части: мяч → два упражнения на левом боку → два на правом → планка на обоих боках. Порядок между видео собран для плеера; в расшифровках общий порядок всего комплекса не указан.</p>
+    <div class="start-panel"><p id="duration"></p><button class="primary" id="start">Начать эту часть</button><button class="text-button sound-toggle">Звук включён</button><p class="small">Карточки и отсчёт переключаются сами. При уходе в другую вкладку — пауза.</p></div>
+  </section>
+  <section id="workout" hidden>
+    <header class="progress-header"><div><span id="progress-label"></span><button id="stop" class="text-button">Стоп</button></div><div class="progress"><span id="progress-fill"></span></div></header>
+    <div class="workout-content"><article class="exercise-card"><div id="illustration" class="illustration"></div><div class="card-body"><p class="eyebrow" id="exercise-tag"></p><h2 id="exercise-title"></h2><p class="dose" id="exercise-dose"></p><p class="side" id="side"></p><details id="technique"><summary>Техника выполнения</summary><ol id="steps"></ol><p id="exercise-note" class="small"></p><button id="source" class="text-button">Текст из записи ↗</button></details></div></article></div>
+    <footer class="controls"><div class="timer-row"><div id="timer-ring" class="timer-ring"><span id="seconds">0</span></div><div class="timer-copy"><p id="phase"></p><h3 id="cue"></h3><p id="repetition"></p><p id="hint"></p></div></div><div class="transport"><button class="circle" id="prev" aria-label="Предыдущий блок">↤</button><button class="play" id="pause" aria-label="Пауза">Ⅱ</button><button class="circle" id="next" aria-label="Следующий блок">↦</button><button class="text-button sound-toggle" aria-label="Управление звуком">Звук включён</button></div><p class="part-label">Первая часть · остальные упражнения ещё не добавлены</p><div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div></footer>
+  </section>
+  <section id="done" class="page done" hidden><span class="done-icon" aria-hidden="true">✓</span><p class="eyebrow">Первая часть завершена</p><h1>На этом<br><em>пока всё.</em></h1><p class="lead">Это все добавленные упражнения этой части. Остальной комплекс появится здесь позже.</p><button class="primary" id="again">К настройкам</button></section>
+</main>
+<dialog id="source-dialog" aria-labelledby="source-title"><button id="source-close" class="text-button close" aria-label="Закрыть">×</button><p class="eyebrow">Присланная расшифровка</p><h2 id="source-title"></h2><p class="small">Дата в отчёте: 28.10.2026. Получено 03.11.2026. Само видео не просматривалось.</p><pre id="source-text"></pre></dialog>
+<dialog id="stop-dialog" aria-labelledby="stop-title"><h2 id="stop-title">Остановить эту часть?</h2><p>Можно вернуться к настройкам или продолжить с текущего места.</p><button class="primary" id="keep">Продолжить</button><button class="text-button" id="reset">К настройкам</button></dialog>
+<script src="pelvic-plan.js"></script><script src="pelvic-sources.js"></script><script src="pelvic.js"></script>
+</body></html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="Личная библиотека комплексов с иллюстрациями, таймерами и звуковыми подсказками.">
+  <title>Движение · Мои комплексы</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="library">
+    <header class="topbar wrap">
+      <a class="brand" href="#" aria-label="Движение — к комплексам"><span class="brand-symbol" aria-hidden="true">↗</span> движение<span class="brand-dot">.</span></a>
+      <button class="quiet about-trigger">Как устроено <span aria-hidden="true">↗</span></button>
+    </header>
+    <main class="wrap">
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro-copy">
+          <p class="eyebrow">Твоё пространство для движения</p>
+          <h1 id="intro-title">В своём<br><em>ритме.</em></h1>
+          <p class="intro-text">Все твои комплексы в одном месте.<br>Выбери тренировку — дальше идём по шагам.</p>
+          <a class="text-link" href="#complexes">К комплексам <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="feature">
+          <div class="feature-top"><span class="pill"><i></i> Можно начать</span><span class="feature-number">01 / 06</span></div>
+          <div class="feature-art"><span class="orbit" aria-hidden="true"></span><img src="assets/0b8dd18d-023c-4bc6-8fbe-576c2a634560.jpg" alt="Иллюстрация из комплекса: поворот головы с наклоном подбородка"></div>
+          <div class="feature-bottom"><div><p class="eyebrow">Мягкое движение</p><h2>Растяжка шеи</h2><p class="meta"><span data-neck-duration>…</span> · 7 упражнений</p></div><button class="round start-neck" aria-label="Открыть комплекс растяжки шеи">↗</button></div>
+        </div>
+      </section>
+      <section id="complexes" class="complexes" aria-labelledby="complexes-title">
+        <div class="section-heading"><div><p class="eyebrow">Библиотека</p><h2 id="complexes-title">Мои комплексы<span class="count">06</span></h2></div><div class="filters" role="group" aria-label="Фильтр комплексов"><button class="filter active" data-filter="all" aria-pressed="true">Все</button><button class="filter" data-filter="ready" aria-pressed="false">Доступные · 3</button></div></div>
+        <div class="grid" id="cards"></div>
+        <p class="library-note">Доступны растяжка шеи, первая часть комплекса тазового дна и силовые А/Б — две тренировки в неделю.</p>
+        <p class="library-note" id="offline-status" role="status">Загружаем приложение для открытия без интернета…</p>
+      </section>
+      <section class="note"><span class="note-mark" aria-hidden="true">↳</span><div><h2>Двигаться в своём ритме.</h2><p>В шее и тазовом дне таймер ведёт по повторам и сторонам. В силовых — помогает с разминкой и отдыхом, а ты отмечаешь подходы и нагрузку. В любой момент можно взять паузу.</p></div><span class="note-sign" aria-hidden="true">take your time</span></section>
+    </main>
+    <footer class="wrap"><span>движение · личная библиотека</span><span>Без спешки и лишних вкладок</span></footer>
+  </div>
+  <section id="session" hidden aria-label="Тренировка">
+    <header class="session-header"><button id="back" class="quiet">← К комплексам</button><span id="session-title">Растяжка шеи</span><span class="session-badge">Твой комплекс</span></header>
+    <iframe id="player" title="Интерактивный комплекс растяжки шеи" allow="autoplay; screen-wake-lock" src="about:blank"></iframe>
+  </section>
+  <dialog id="details" aria-labelledby="detail-title"><button class="close" aria-label="Закрыть">×</button><p class="eyebrow" id="detail-tag">О комплексе</p><h2 id="detail-title"></h2><p id="detail-text"></p><div id="detail-extra"></div><button class="primary close-detail">Понятно</button></dialog>
+  <dialog id="exit" aria-labelledby="exit-title"><p class="eyebrow">Тренировка на паузе</p><h2 id="exit-title">Вернуться к комплексам?</h2><p id="exit-copy">Текущий отсчёт сбросится. Если хочешь продолжить, останься на тренировке.</p><button class="primary" id="stay">Остаться</button><button class="quiet" id="leave">К комплексам</button></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
