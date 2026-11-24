@@ -1,0 +1,17 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Обновление · Движение</title>
+<style>body{margin:0;background:#f7f6f0;color:#293a30;font:18px/1.6 system-ui}main{max-width:520px;margin:10vh auto;padding:24px}h1{line-height:1.2}button{font:inherit;padding:16px 22px;border:0;border-radius:16px;background:#293a30;color:white;cursor:pointer}button:disabled{opacity:.6}a{color:inherit}</style>
+<main><h1>Обновить тренажёр</h1><p>История занятий останется в браузере. Если сейчас идёт тренировка, сначала заверши ввод и закрой её.</p><button id="update">Загрузить обновление</button><p id="status" role="status"></p><a href="./">Вернуться к комплексам</a></main>
+<script>
+const button=document.querySelector('#update'),status=document.querySelector('#status');let registration;
+function ready(){if(registration.waiting){button.disabled=false;button.textContent='Открыть обновлённый тренажёр';status.textContent='Обновление готово. Можно открыть новую версию.';}}
+function watch(){const worker=registration.installing;if(worker)worker.addEventListener('statechange',()=>{if(worker.state==='installed')ready();if(worker.state==='redundant'){button.disabled=false;status.textContent='Загрузка не завершилась. Проверь интернет и попробуй ещё раз.';}});}
+navigator.serviceWorker.addEventListener('controllerchange',()=>location.replace('./'));
+button.addEventListener('click',async()=>{try{
+ if(registration?.waiting){button.disabled=true;registration.waiting.postMessage('ACTIVATE_UPDATE');return;}
+ button.disabled=true;status.textContent='Загружаем новую версию и картинки…';
+ registration=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});
+ registration.addEventListener('updatefound',watch);watch();
+ await registration.update();ready();
+ if(!registration.waiting&&!registration.installing){button.disabled=false;button.textContent='Загрузить обновление';status.textContent='Установлена последняя версия. Можно вернуться к комплексам.';}
+}catch(error){button.disabled=false;status.textContent='Не удалось загрузить обновление: '+error.message;}});
+</script></html>
